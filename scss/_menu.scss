@@ -12,7 +12,7 @@
         width: 28px;
         height: 3px;
         margin: 0 0 5px 0;
-        background: #fff;
+        background: rgb(153, 42, 42);
         @include easeOut;
     }
 
@@ -35,4 +35,16 @@
           }
         }
     }
+}
+
+
+
+
+.nav-menu{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 0.9;
+    visibility: hidden;
+
 }

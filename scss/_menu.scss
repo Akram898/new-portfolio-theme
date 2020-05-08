@@ -1,131 +1,126 @@
 //Menu Button
-.menu-btn{
-    position: absolute;
-    top: 35px;
-    right: 35px;
-    z-index: 3;
-    cursor: pointer;
+.menu-btn {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  z-index: 3;
+  cursor: pointer;
+  @include easeOut;
+
+  .btn-line {
+    width: 28px;
+    height: 3px;
+    margin: 0 0 5px 0;
+    background: set-text-color($primary-color);
     @include easeOut;
+  }
 
-    
-    .btn-line{
-        width: 28px;
-        height: 3px;
-        margin: 0 0 5px 0;
-        background: rgb(255, 255, 255);
-        @include easeOut;
+  //Rotate into X with Menu Lines
+  &.close {
+    transform: rotate(180deg);
+
+    .btn-line {
+      //line 1 - Rotate
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      //Line 2 - Hide
+      &:nth-child(3) {
+        opacity: 0;
+      }
+      //Line 3 - Rotate
+      &:nth-child(2) {
+        transform: rotate(-45deg) translate(-0.5px, -0.5px);
+      }
     }
-
-    //Rotate into X with Menu Lines
-    &.close{
-        transform: rotate(180deg);
-
-        .btn-line{
-            //line 1 - Rotate
-          &:nth-child(1){
-              transform: rotate(45deg) translate(5px,5px);
-          }
-            //Line 2 - Hide
-&:nth-child(3){
-              opacity: 0;
-          }
-            //Line 3 - Rotate
-            &:nth-child(2){
-              transform: rotate(-45deg) translate(-.5px,-.5px);
-          }
-        }
-    }
+  }
 }
 
+.nav-menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 0.91;
+  visibility: hidden;
 
-
-
-.nav-menu{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    opacity: 0.91;
-    visibility: hidden;
-
-    &.show{
-        visibility: visible;
-    }
-.menu-branding, .ul-nav-menu{
-display: flex;
-flex-flow: column wrap;
-align-items: center;
-justify-content: center;
-float: left;
-width: 50%;
-height: 100vh;
-}
-.ul-nav-menu{
-    margin:0;
+  &.show {
+    visibility: visible;
+  }
+  .menu-branding,
+  .ul-nav-menu {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    width: 50%;
+    height: 100vh;
+  }
+  .ul-nav-menu {
+    margin: 0;
     padding: 0;
-    background:rgba(darken($primary-color, 5), 0.9);
+    background: rgba(darken($primary-color, 5), 0.9);
     list-style: none;
     transform: translate3d(0, -100%, 0);
     @include easeOut;
-    
-    &.show{
-        //slide in from top
-        transform: translate3d(0, 0, 0);
+
+    &.show {
+      //slide in from top
+      transform: translate3d(0, 0, 0);
     }
-}
+  }
 
-
-//Branding
-.menu-branding{
-    margin:0;
+  //Branding
+  .menu-branding {
+    margin: 0;
     padding: 0;
-    background:rgba($primary-color,0.9);
+    background: rgba($primary-color, 0.9);
     transform: translate3d(0, 100%, 0);
     @include easeOut;
-    
-    &.show{
-        //slide in from top
-        transform: translate3d(0, 0, 0);
-    }
-    .portrait{
-        width: 250px;
-        height: 250px;
-        background: url('../img/new-img.jpg');
-        background-size: cover;
-        border-radius: 50%;
-        border: solid 2px $secondary-color;
-        z-index: 5;
-        
-    }
 
-}
+    &.show {
+      //slide in from top
+      transform: translate3d(0, 0, 0);
+    }
+    .portrait {
+      width: 250px;
+      height: 250px;
+      background: url("../img/new-img.jpg");
+      background-size: cover;
+      border-radius: 50%;
+      border: solid 2px $secondary-color;
+      z-index: 5;
+    }
+  }
 
-.li-nav-item{
-    transform: translate3d(600px,0,0);
+  .li-nav-item {
+    transform: translate3d(600px, 0, 0);
     @include easeOut;
-&.show{
-        //slide in from top
-        transform: translate3d(0, 0, 0);
-
-      }
-      &.current > a{
-       color: $secondary-color;
-      }
- }
-.a-nav-link{
+    &.show {
+      //slide in from top
+      transform: translate3d(0, 0, 0);
+    }
+    &.current > a {
+      color: $secondary-color;
+    }
+  }
+  .a-nav-link {
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 1.5px;
     text-transform: uppercase;
+    color: set-text-color($primary-color);
     display: block;
     padding: 10px 0;
     @include easeOut;
-    
-}
-}
-
-//Delay each list item by .1 sec
-@for $x from 1 through 4{
-    .li-nav-item:nth-child(#{$x}) {
-       transition-delay: $x * .1s;
+    &:hover {
+      color: $secondary-color;
     }
+  }
+}
+//Delay each list item by .1 sec
+@for $x from 1 through 4 {
+  .li-nav-item:nth-child(#{$x}) {
+    transition-delay: $x * 0.1s;
+  }
 }

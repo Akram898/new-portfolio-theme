@@ -1,76 +1,217 @@
-@import 'config';
-@import 'menu';
-@import 'mobile';
-*{
-    box-sizing: border-box;
+@import "config";
+@import "menu";
+
+* {
+  box-sizing: border-box;
 }
 
-body{
-    @include background;
-    background-color: $primary-color;
-    color: #fff;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 2;
-    
+body {
+  @include background;
+  background-color: $primary-color;
+  color: set-text-color($primary-color);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 2;
 }
 
-h1, h2, h3{
-    margin: 0;
-    font-weight: 400;
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
 
-    &.h1-big-text{
-        font-size: 4rem;
-    }
-    &.h2-small-text{
-        padding: 10px 10px 20px 10px;
-        background: rgba(lighten($primary-color,2),0.5);
-    }
+  &.h1-big-text {
+    font-size: 4rem;
+  }
+  &.h2-small-text {
+    padding: 10px 10px 20px 10px;
+    background: rgba(lighten($primary-color, 2), 0.5);
+  }
 }
 
-a{
-    color: wheat;
-    text-decoration: none;
+a {
+  color: wheat;
+  text-decoration: none;
 
-    &:hover{
-        color: $secondary-color;
-        @include easeOut;
-    }
-}
-
-header{
-    position: fixed;
-    width: 100%;
-    z-index: 2; //the bigger the number - the element closer to me.
-}
-
-.secondary-color{
+  &:hover {
     color: $secondary-color;
+    @include easeOut;
+  }
 }
 
-main{
-    padding: 5rem;
-    height: 100%;
-
-    .icons{
-        margin-top: 1rem;
-       
-        a{
-            color: wheat;
-            padding: .2rem;
-
-            &:hover{
-            color: $secondary-color;
-        transition: all .7s ease-in-out;
-    }
-        }
-    }
-    &#home{
-        overflow: hidden;
-        h1{
-            margin-top: 20vh;
-        }
-    }
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 2; //the bigger the number - the element closer to me.
 }
+
+.secondary-color {
+  color: $secondary-color;
+}
+
+main {
+  padding: 5rem;
+  // height: 100%;
+  min-height: calc(100vh-60px);
+
+  .icons {
+    margin-top: 1rem;
+
+    a {
+      color: wheat;
+      padding: 0.2rem;
+
+      &:hover {
+        color: $secondary-color;
+        transition: all 0.5s ease-in-out;
+      }
+    }
+  }
+  &#home {
+    overflow: hidden;
+    h1 {
+      margin-top: 20vh;
+    }
+  }
+}
+
+//-----------About page-----------------------------------
+.about-info {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-areas:
+    "bioimage bio bio"
+    "job1 job2 job3";
+  grid-template-columns: repeat(3, 1fr);
+
+  .bio-image {
+    grid-area: bioimage;
+    margin: auto;
+    border-radius: 50%;
+
+    border: solid 2px $secondary-color;
+    width: 150px;
+    height: 150px;
+  }
+  .bio {
+    grid-area: bio;
+    font-size: 1.3rem;
+    padding: 10px;
+  }
+  .job1 {
+    grid-area: job1;
+  }
+  .job2 {
+    grid-area: job2;
+  }
+  .job3 {
+    grid-area: job3;
+  }
+
+  .job {
+    background: lighten($primary-color, 5);
+    padding: 0.5rem;
+    border-bottom: 5px solid $secondary-color;
+  }
+}
+// ---------------------End About Page------------------------------
+
+// ----------------------Start Portfolio Page-----------------------------
+
+.projects {
+  display: grid;
+  grid-gap: 0.7rem;
+  grid-template-columns: repeat(3, 1fr);
+
+  // new chrome extension
+
+  img {
+    animation: yourAnimation 2s forwards 0s ease;
+    width: 100%;
+    border: 2px #fff solid;
+
+    &:hover {
+      opacity: 0.5;
+      border-color: $secondary-color;
+      @include easeOut;
+    }
+  }
+
+  @keyframes yourAnimation {
+    0% {
+      transform: rotate(0) translateY(-40%);
+      opacity: 0;
+    }
+    100% {
+      transform: rotate(0) translateY(0);
+      opacity: 01;
+    }
+  }
+
+  i {
+    padding: 8px;
+  }
+}
+
+//Button Styles----
+.btn {
+  display: block;
+  padding: 2px;
+  margin-bottom: 0.4rem;
+  text-align: center;
+  border-radius: 9px;
+
+  &:hover {
+    background: $secondary-color;
+    color: set-text-color($secondary-color);
+  }
+}
+.btn-dark {
+  @extend .btn;
+  background: darken($primary-color, 50);
+  color: #fff;
+}
+.btn-light {
+  @extend .btn;
+  background: lighten($primary-color, 50);
+  color: #333;
+}
+// -----------------------End Portfolio Page----------------------------
+
+// -----------------------End Contact Page----------------------------
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1rem;
+
+  div {
+    font-size: 2rem;
+    border: 3px wheat solid;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    @include easeOut;
+    &:hover {
+      padding: 0.5rem 1.5rem;
+      background-color: $secondary-color;
+      color: set-text-color($secondary-color);
+      span {
+        color: set-text-color($secondary-color);
+      }
+    }
+  }
+}
+// -----------------------End Contact Page----------------------------
+
+#main-footer {
+  padding: 0.5rem;
+  text-align: center;
+  background-color: darken($primary-color, 5);
+  height: 60px;
+  color: set-text-color($primary-color);
+}
+
+@import "mobile";
